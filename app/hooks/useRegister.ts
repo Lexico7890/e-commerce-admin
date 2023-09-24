@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 export function useRegister () {
   const [phone, setPhone] = useState<string>('')
   const [firstLower, setFirstLower] = useState<boolean>(true)
+  const [isEqual, setIsEqual] = useState<boolean>(true)
   const [minimumCharacters, setMinimumCharacters] = useState<boolean>(true)
   const [newPassword, setNewPassword] = useState<string>('')
   const [passwordConfirm, setPasswordConfirm] = useState<string>('')
@@ -14,18 +15,21 @@ export function useRegister () {
   } */
 
   useEffect(() => {
-    const pru = newPassword
     const regex = /^[0-9]+$/
     if (newPassword.length >= 8) {
       setMinimumCharacters(false)
     } else {
       setMinimumCharacters(true)
     }
-    if (pru.charAt(0).toLowerCase() !== pru.charAt(0) && pru.length > 0) {
+    if (newPassword.charAt(0).toLowerCase() !== newPassword.charAt(0) && newPassword.length > 0) {
       setFirstLower(false)
-      return
     } else {
       setFirstLower(true)
+    }
+    if (passwordConfirm === newPassword && newPassword.length > 0) {
+      setIsEqual(false)
+    } else {
+      setIsEqual(true)
     }
     if (isFirst.current) {
       isFirst.current = phone === ''
@@ -56,6 +60,7 @@ export function useRegister () {
     passwordConfirm,
     setPasswordConfirm,
     firstLower,
-    minimumCharacters
+    minimumCharacters,
+    isEqual
   }
 }

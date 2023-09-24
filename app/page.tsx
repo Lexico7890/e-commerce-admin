@@ -1,6 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import ValidateRegister from './components/validate-register'
 
 export default async function Home () {
   const supabase = createServerComponentClient({ cookies })
@@ -12,9 +13,9 @@ export default async function Home () {
     .select('*')
     .eq('id', session?.user?.id)
   if (session === null) {
-    redirect('/sign-in')
+    redirect('/sign-up')
   }
-  console.log(JSON.stringify(stores, null, 2))
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       {stores === null && (
@@ -87,6 +88,7 @@ export default async function Home () {
                 >
                   Cancelar
                 </button>
+                <ValidateRegister />
               </div>
             </div>
           </div>

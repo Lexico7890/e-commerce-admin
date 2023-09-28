@@ -9,14 +9,14 @@ export const metadata: Metadata = {
   description: 'Application for administration e-commerce'
 }
 
-export default function RootLayout ({
+export default async function RootLayout ({
   children
 }: {
   children: React.ReactNode
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} dark:bg-custom-black dark:text-white`}>
+      <body className={`${inter.className} dark:bg-black dark:text-white`}>
         {children}
       </body>
     </html>

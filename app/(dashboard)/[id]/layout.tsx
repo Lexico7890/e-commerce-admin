@@ -2,7 +2,6 @@
 
 import UserIcon from '@/public/icons/user-icon'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
 
 const OptionMenu = [
@@ -40,12 +39,10 @@ const LayoutStore = ({ params, children }: { params: { id: number }, children: R
   const { id } = params
   const [isInfoUserOpen, setInfoUserOpen] = useState<boolean>(false)
   const [isOpenListStores, setOpenListStores] = useState<boolean>(false)
-  const pathname = usePathname()
-  console.log(pathname)
   return (
     <section>
-      <nav className="bg-white dark:bg-black border-b-2 border-white">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <nav className="bg-white dark:bg-custom-black border-b-2 border-white">
+      <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div>
           <div className="flex">
             <button
@@ -129,22 +126,6 @@ const LayoutStore = ({ params, children }: { params: { id: number }, children: R
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
-                    Dashboard
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
                     Earnings
                   </a>
                 </li>
@@ -164,12 +145,13 @@ const LayoutStore = ({ params, children }: { params: { id: number }, children: R
           className="items-center justify-between w-full md:flex md:w-auto md:order-1"
           id="navbar-user"
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-black md:dark:bg-black dark:border-gray-700">
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white  md:dark:bg-custom-black dark:border-gray-700">
             {OptionMenu.map(({ link, name }) => (
-              <li key={name}>
+              <li key={name}
+              className="block py-2 pl-3 pr-4 text-white dark:hover:bg-custom-blue-neon dark:hover:font-bold dark:hover:text-black md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white"
+              >
                 <Link
                   href={`/${id}/${link}`}
-                  className="block py-2 pl-3 pr-4 text-white bg-blue-700 md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white"
                   aria-current="page"
                 >
                   {name}

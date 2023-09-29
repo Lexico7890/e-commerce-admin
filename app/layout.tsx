@@ -16,7 +16,7 @@ export default async function RootLayout ({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} dark:bg-black dark:text-white`}>
+      <body className={`${inter.className} dark:bg-custom-black dark:text-white`}>
         {children}
       </body>
     </html>
